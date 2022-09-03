@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const hoddies = () => {
+const mug = () => {
   return (
     <div><section className="text-gray-600 body-font">
     <div className="container px-5 py-24 mx-auto">
@@ -12,7 +12,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -32,7 +32,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -52,7 +52,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -72,7 +72,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -92,7 +92,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -112,7 +112,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -132,7 +132,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -152,7 +152,7 @@ const hoddies = () => {
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
-                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61EAQ1Xh0+L._UX679_.jpg"
+                src="https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61WrYeMs59L._SX679_.jpg"
               />
             </a>
             <div className="mt-4">
@@ -172,4 +172,4 @@ const hoddies = () => {
   )
 }
 
-export default hoddies
+export default mug

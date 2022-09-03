@@ -5,17 +5,17 @@ import { AiOutlineShoppingCart } from 'react-icons/Ai';
 
 const Navbar = () => {
   return (
-    <div className='flex flex-col md:flex-row md:justify-start justify-center items-center'>
+    <div className='flex flex-col md:flex-row md:justify-start justify-center items-center shadow-xl '>
       <div className='logo'>
-      <Image src="/logo-modified.png" alt='' height={70} width={100}/>
+      <Link href={"/"}><a><Image src="/logo-modified.png" alt='' height={70} width={100}/></a></Link>
       </div>
       
-      <div className='nav px-5 py-5 font-semibold'>
+      <div className='nav px-5 py-5 font-bold text-lg'>
         <ul className='flex  space-x-2'>
-          <Link href={'/'}><a><li>T-shirt</li></a></Link>
-          <Link href={'/'}><a><li>Mug</li></a></Link>
-          <Link href={'/'}><a><li>Hoodies</li></a></Link>
-          <Link href={'/'}><a><li>Jacket</li></a></Link>
+          <Link href={'/tshirt'}><a><li>T-shirt</li></a></Link>
+          <Link href={'/mug'}><a><li>Mug</li></a></Link>
+          <Link href={'/hoddies'}><a><li>Hoodies</li></a></Link>
+         
         </ul>
         
       </div>
