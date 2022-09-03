@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Image from 'next/image'
+import Mid from '../components/Mid' 
 //import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       </Head>
       <Navbar/>
       <Image src="/head.png" alt="" height={600} width={1500}/>
+      <Mid/>
 
       <Footer/>
     </div>
