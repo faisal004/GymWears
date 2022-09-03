@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Hoddies() {
+const hoddies = () => {
   return (
-    <div>Hoddies</div>
+    <div>hoddies</div>
   )
 }
 
-export default Hoddies
+export default hoddies
