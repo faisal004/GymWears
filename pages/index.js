@@ -8,8 +8,9 @@ export default function Home() {
   return (
     <div>
       
-      
-      <Image src="/head.png" alt="" height={600} width={1500}/>
+      <div>
+      <img className=' h-1/4 w-screen' src='/head.png'></img>
+      </div>
       
       <Mid/>
 

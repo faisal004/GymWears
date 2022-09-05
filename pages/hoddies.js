@@ -8,7 +8,7 @@ const hoddies = () => {
       <div className="flex flex-wrap -m-4">
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
@@ -28,7 +28,7 @@ const hoddies = () => {
         </Link>
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
@@ -48,7 +48,7 @@ const hoddies = () => {
         </Link>
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
@@ -68,7 +68,7 @@ const hoddies = () => {
         </Link>
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
@@ -88,7 +88,7 @@ const hoddies = () => {
         </Link>
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
@@ -108,7 +108,7 @@ const hoddies = () => {
         </Link>
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
@@ -128,7 +128,7 @@ const hoddies = () => {
         </Link>
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"
@@ -148,7 +148,7 @@ const hoddies = () => {
         </Link>
         <Link href={"/product/wear-the-muscle"}>
           <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
-            <a className="block relative rounded overflow-hidden">
+            <a className="block    rounded overflow-hidden">
               <img
                 alt="ecommerce"
                 className="object-cover object-center w-full h-full block"

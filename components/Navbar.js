@@ -2,7 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { AiOutlineShoppingCart, AiFillCloseCircle } from "react-icons/Ai";
+import {
+  AiOutlineShoppingCart,
+  AiFillCloseCircle,
+  AiOutlinePlusCircle,
+  AiOutlineMinusCircle,
+  AiFillShopping
+} from "react-icons/Ai";
 
 const Navbar = () => {
   const togglecart = () => {
@@ -52,9 +58,9 @@ const Navbar = () => {
       </div>
       <div
         ref={ref}
-        className="sidecart absolute top-0 right-0 bg-slate-300 p-10 text-xl font-semibold transform transition-transform translate-x-full"
+        className="sidecart h-full absolute top-0 right-0 bg-slate-300 p-10 font-semibold transform transition-transform translate-x-full"
       >
-        <h2 className="flex flex-row">
+        <h2 className="flex flex-row text-center text-2xl">
           ShoppingCart
           <span>
             <AiOutlineShoppingCart className="m-1" />
@@ -63,12 +69,64 @@ const Navbar = () => {
         <span onClick={togglecart} className="absolute top-2 right-2">
           <AiFillCloseCircle className="cursor-pointer text-slate-700" />
         </span>
-        <ol>
-          <li>fdfd</li>
-          <li>fdfd</li>
-          <li>fdfd</li>
-          <li>fdfd</li>
-          <li>fdfd</li>
+        <ol className="list-decimal">
+          <li>
+            <div className="flex my-3">
+              <div className="w-2/3">T-shirt - Wear the Muscle</div>
+              <div className="flex items-center justify-center w-1/3">
+                <AiOutlineMinusCircle className="mx-2" />1
+                <AiOutlinePlusCircle className="mx-2" />
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex my-3">
+              <div className="w-2/3">T-shirt - Wear the Muscle</div>
+              <div className="flex items-center justify-center w-1/3">
+                <AiOutlineMinusCircle className="mx-2" />1
+                <AiOutlinePlusCircle className="mx-2" />
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex my-3">
+              <div className="w-2/3">T-shirt - Wear the Muscle</div>
+              <div className="flex items-center justify-center w-1/3">
+                <AiOutlineMinusCircle className="mx-2" />1
+                <AiOutlinePlusCircle className="mx-2" />
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex my-3">
+              <div className="w-2/3">T-shirt - Wear the Muscle</div>
+              <div className="flex items-center justify-center w-1/3">
+                <AiOutlineMinusCircle className="mx-2" />1
+                <AiOutlinePlusCircle className="mx-2" />
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex my-3">
+              <div className="w-2/3">T-shirt - Wear the Muscle</div>
+              <div className="flex items-center justify-center w-1/3">
+                <AiOutlineMinusCircle className="mx-2" />1
+                <AiOutlinePlusCircle className="mx-2" />
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex my-3">
+              <div className="w-2/3">T-shirt - Wear the Muscle</div>
+              <div className="flex items-center justify-center w-1/3">
+                <AiOutlineMinusCircle className="mx-2" />1
+                <AiOutlinePlusCircle className="mx-2" />
+              </div>
+            </div>
+          </li>
+          <button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+            <AiFillShopping className="m-1"/>CheckOut
+          </button>
         </ol>
       </div>
     </div>
