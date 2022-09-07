@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
   const [cart, setcart] = useState({});
-  const [subTotal, setsubTotal] = useState();
+  const [subTotal, setsubTotal] = useState(0);
   useEffect(() => {
     try {
       if (localStorage.getItem("cart")) {
