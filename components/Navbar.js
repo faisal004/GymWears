@@ -7,11 +7,11 @@ import {
   AiFillCloseCircle,
   AiOutlinePlusCircle,
   AiOutlineMinusCircle,
-  AiFillShopping
+  AiFillShopping,
 } from "react-icons/Ai";
 
-const Navbar = ({cart,addToCart,removeFromCart,subTotal}) => {
-  console.log(cart,addToCart,removeFromCart,subTotal)
+const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
+  console.log(cart, addToCart, removeFromCart, subTotal);
   const togglecart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
       ref.current.classList.remove("translate-x-full");
@@ -71,21 +71,49 @@ const Navbar = ({cart,addToCart,removeFromCart,subTotal}) => {
           <AiFillCloseCircle className="cursor-pointer text-slate-700" />
         </span>
         <ol className="list-decimal">
-          {Object.keys(cart).map((k)=> { return <li key={k}>
-            <div className="flex my-3">
-              <div className="w-2/3">T-shirt - Wear the Muscle</div>
-              <div className="flex items-center justify-center w-1/3">
-                <AiOutlineMinusCircle className="mx-2" />1
-                <AiOutlinePlusCircle className="mx-2" />
-              </div>
-            </div>
-          </li>})}
-          
-          </ol>
-          <button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
-            <AiFillShopping className="m-1"/>CheckOut
-          </button>
-        
+          {Object.keys(cart).length == 0 && (
+            <div className="mt-2">No Item to display</div>
+          )}
+          {Object.keys(cart).map((k) => {
+            return (
+              <li key={k}>
+                <div className="flex my-3">
+                  <div className="w-2/3">{cart[k].name}</div>
+                  <div className="flex items-center justify-center w-1/3">
+                    <AiOutlineMinusCircle
+                      onClick={() => {
+                        removeFromCart(
+                          k,
+                          1,
+                          cart[k].price,
+                          cart[k].name,
+                          cart[k].size,
+                          cart[k].varient
+                        );
+                      }}
+                      className=" cursor-pointer mx-2"
+                    />
+                    {cart[k].qty}
+                    <AiOutlinePlusCircle  onClick={() => {
+                        removeFromCart(
+                          k,
+                          1,
+                          cart[k].price,
+                          cart[k].name,
+                          cart[k].size,
+                          cart[k].varient
+                        );
+                      }} className=" cursor-pointer mx-2" />
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+        <button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+          <AiFillShopping className=" m-1" />
+          CheckOut
+        </button>
       </div>
     </div>
   );

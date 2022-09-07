@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Post = () => {
+const Post = ({ addToCart }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [pin, setpin] = useState();
@@ -178,9 +178,22 @@ const Post = () => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   ₹499
                 </span>
-                <button className="flex ml-8 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded">
+                <button
+                  onClick={() => {
+                    addToCart(
+                      slug,
+                      1,
+                      499,
+                      "wear the muscle(XL,RED)",
+                      "XL",
+                      "RED"
+                    );
+                  }}
+                  className="flex ml-8 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
+                >
                   Add to cart
                 </button>
+
                 <button className="flex ml-10 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded">
                   Buy Now
                 </button>
@@ -211,8 +224,16 @@ const Post = () => {
                   Check
                 </button>
               </div>
-              {!service && service!=null && <div className="text-red-600 text-xs mt-2">Sorry, We do not deliver to this pin yet</div>}
-              {service && service!=null && <div className="text-green-600 text-xs mt-2">Your address is serviceable</div>}
+              {!service && service != null && (
+                <div className="text-red-600 text-xs mt-2">
+                  Sorry, We do not deliver to this pin yet
+                </div>
+              )}
+              {service && service != null && (
+                <div className="text-green-600 text-xs mt-2">
+                  Your address is serviceable
+                </div>
+              )}
             </div>
           </div>
         </div>
