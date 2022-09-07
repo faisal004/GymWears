@@ -16,31 +16,34 @@ function MyApp({ Component, pageProps }) {
       console.error(error);
       localStorage.clear();
     }
-  }, []);
+  }, [setcart]);
 
   const savecart = (mycart) => {
     localStorage.setItem("cart", JSON.stringify(mycart));
     let subt = 0;
     let keys = Object.keys(mycart);
     for (let i = 0; i < keys.length; i++) {
-      subt += mycart[keys[i]].price * mycart[keys[i]].qty;
+      subt += mycart[keys[i]]["price"] * mycart[keys[i]].qty;
     }
     setsubTotal(subt);
   };
 
   const addToCart = (itemcode, qty, price, name, size, varient) => {
-    let newCart = JSON.parse(JSON.stringify(cart));
+    let newCart = cart
+    
     if (itemcode in cart) {
       newCart[itemcode].qty = cart[itemcode].qty + qty;
     } else {
       newCart[itemcode] = { qty: 1, price, name, size, varient };
     }
     setcart = newCart;
+    
     savecart = newCart;
+    
   };
 
   const removeFromCart = (itemcode, qty, price, name, size, varient) => {
-    let newCart = JSON.parse(JSON.stringify(cart));
+    let newCart = cart;
     if (itemcode in cart) {
       newCart[itemcode].qty = cart[itemcode].qty - qty;
     }

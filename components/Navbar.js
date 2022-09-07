@@ -11,7 +11,7 @@ import {
 } from "react-icons/Ai";
 
 const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
-  console.log(cart, addToCart, removeFromCart, subTotal);
+  
   const togglecart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
       ref.current.classList.remove("translate-x-full");
@@ -23,7 +23,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
   };
   const ref = useRef();
   return (
-    <div className="flex flex-col md:flex-row md:justify-start justify-center items-center shadow-xl ">
+    <div className="flex flex-col md:flex-row md:justify-start justify-center items-center shadow-xl sticky top-0 bg-white z-10">
       <div className="logo">
         <Link href={"/"}>
           <a>
@@ -59,7 +59,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
       </div>
       <div
         ref={ref}
-        className="sidecart h-full absolute top-0 right-0 bg-slate-300 p-10 font-semibold transform transition-transform translate-x-full"
+        className="sidecart h-[100vh] absolute top-0 right-0 bg-slate-300 p-10 font-semibold transform transition-transform translate-x-full"
       >
         <h2 className="flex flex-row text-center text-2xl">
           ShoppingCart
@@ -71,7 +71,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
           <AiFillCloseCircle className="cursor-pointer text-slate-700" />
         </span>
         <ol className="list-decimal">
-          {Object.keys(cart).length == 0 && (
+          {Object.keys(cart).length == 0 && (         
             <div className="mt-2">No Item to display</div>
           )}
           {Object.keys(cart).map((k) => {
@@ -95,7 +95,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
                     />
                     {cart[k].qty}
                     <AiOutlinePlusCircle  onClick={() => {
-                        removeFromCart(
+                        addToCart(
                           k,
                           1,
                           cart[k].price,

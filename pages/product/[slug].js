@@ -179,16 +179,7 @@ const Post = ({ addToCart }) => {
                   ₹499
                 </span>
                 <button
-                  onClick={() => {
-                    addToCart(
-                      slug,
-                      1,
-                      499,
-                      "wear the muscle(XL,RED)",
-                      "XL",
-                      "RED"
-                    );
-                  }}
+                  onClick={() => {addToCart(slug,1,499,"wear the muscle(XL,RED)","XL","RED")}}
                   className="flex ml-8 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
                 >
                   Add to cart
