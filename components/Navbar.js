@@ -10,6 +10,8 @@ import {
   AiFillShopping,
 } from "react-icons/Ai";
 
+import {MdAccountCircle} from "react-icons/Md";
+
 const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
   
   const togglecart = () => {
@@ -52,10 +54,11 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
         </ul>
       </div>
       <div
-        onClick={togglecart}
-        className="cart absolute right-0 px-2 py-2 text-3xl  md:text-6xl cursor-pointer"
+        
+        className="cart absolute right-0 mx-2 px-2 py-2 text-3xl  md:text-3xl cursor-pointer flex"
       >
-        <AiOutlineShoppingCart />
+      <Link href={'/login'}><MdAccountCircle className="mx-4 "/></Link>
+        <AiOutlineShoppingCart onClick={togglecart} />
       </div>
       <div
         ref={ref}
