@@ -1,10 +1,12 @@
 import React from "react";
 import {
+  AiFillShopping,
   
   AiOutlinePlusCircle,
   AiOutlineMinusCircle,
   
 } from "react-icons/Ai";
+import Link from "next/link";
 
 
 const checkout = ({ cart ,addToCart,removeFromCart,subTotal}) => {
@@ -185,6 +187,10 @@ const checkout = ({ cart ,addToCart,removeFromCart,subTotal}) => {
         <span className=" font-medium">Subtotal:{subTotal}</span>
         
       </div>
+      <Link href={'/'}><button className=" m-2 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+          <AiFillShopping className=" m-1" />
+          PAY
+        </button></Link>
       
       
     </div>

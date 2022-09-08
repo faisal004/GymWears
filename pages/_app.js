@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   const [subTotal, setsubTotal] = useState(0);
   useEffect(() => {
     try {
-      if (localStorage.getItem("cart")) {
+      if (window.localStorage.getItem("cart")) {
         setcart(JSON.parse(localStorage.getItem("cart")));
         savecart(JSON.parse(localStorage.getItem("cart")))
       }
@@ -20,7 +20,9 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   const savecart = (mycart) => {
-    localStorage.setItem("cart", JSON.stringify(mycart));
+    
+    window.localStorage.setItem("cart", JSON.stringify(mycart));
+    
     let subt = 0;
     let keys = Object.keys(mycart);
     for (let i = 0; i < keys.length; i++) {
@@ -41,6 +43,7 @@ function MyApp({ Component, pageProps }) {
     setcart = newCart;
     
     savecart = newCart;
+    //issue is with save cart
     
   };
 
