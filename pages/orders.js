@@ -16,13 +16,13 @@ const orders = () => {
               Your order is successfully placed.
             </p>
             <div className="flex mb-4">
-              <a className="flex-grow text-slate-500 border-slate-500 py-2 text-lg px-1">
+              <a className="flex-grow text-slate-500 border-slate-500 py-2 text-lg px-1 text-center">
                 Description
               </a>
-              <a className="flex-grow border-gray-300 py-2 text-lg px-1">
+              <a className="flex-grow border-gray-300 py-2 text-lg px-1 text-center">
                 Quantity
               </a>
-              <a className="flex-grow border-gray-300 py-2 text-lg px-1">
+              <a className="flex-grow border-gray-300 py-2 text-lg px-1 text-center">
                 Item Total
               </a>
             </div>
