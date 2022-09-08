@@ -11,12 +11,13 @@ function MyApp({ Component, pageProps }) {
     try {
       if (localStorage.getItem("cart")) {
         setcart(JSON.parse(localStorage.getItem("cart")));
+        savecart(JSON.parse(localStorage.getItem("cart")))
       }
     } catch (error) {
       console.error(error);
       localStorage.clear();
     }
-  }, [setcart]);
+  }, []);
 
   const savecart = (mycart) => {
     localStorage.setItem("cart", JSON.stringify(mycart));
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }) {
       subt += mycart[keys[i]]["price"] * mycart[keys[i]].qty;
     }
     setsubTotal(subt);
+    console.log(subTotal)
   };
 
   const addToCart = (itemcode, qty, price, name, size, varient) => {

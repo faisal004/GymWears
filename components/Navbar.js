@@ -110,10 +110,10 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
             );
           })}
         </ol>
-        <button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+        <Link href={'/checkout'}><button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
           <AiFillShopping className=" m-1" />
           CheckOut
-        </button>
+        </button></Link>
       </div>
     </div>
   );
