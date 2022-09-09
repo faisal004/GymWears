@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
       console.error(error);
       localStorage.clear();
     }
-  }, []);
+  }, [setcart]);
 
   const savecart = (mycart) => {
     
