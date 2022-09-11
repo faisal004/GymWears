@@ -9,4 +9,3 @@ const connectDB = async (handler)=> {
 }
 export default connectDB;
 //hello on rest 10/09/2022
-//Nothing today also
