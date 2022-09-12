@@ -10,5 +10,6 @@ const OrdersSchema = new mongoose.Schema({
     amount:{type: Number, required: true},
     status:{type: String,default:'Pending', required: true},
 },{timestamps:true});
+mongoose.models={}
 
 export default mongoose.model("Order",OrdersSchema)

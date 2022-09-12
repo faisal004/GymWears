@@ -1,7 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import product from '../../models/product'
+
 import connectDB from '../../middleware/mongoose'
-export default function handler(req, res) {
-    res.status(200).json({ name: 'John Doe' })
+import Product from '../../models/product'
+const handler=async(req,res)=>{
+
+    let products=await Product.find()
+    res.status(200).json({ products })
   }
+  export default connectDB(handler);
   
