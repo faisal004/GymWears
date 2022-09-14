@@ -9,7 +9,8 @@ const tshirt = ({products}) => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
-            <Link href={"/product/[slug].js"}>
+          {products.map((item)=> {
+             return <Link key={item._id} href={"/product/[slug].js"}>
               <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
                 <a className="block rounded overflow-hidden">
                   <img
@@ -23,12 +24,12 @@ const tshirt = ({products}) => {
                     T-shirts
                   </h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">
-                    Wear the muscle
+                    {item.title}
                   </h2>
-                  <p className="mt-1">₹499</p>
+                  <p className="mt-1">{item.price}</p>
                 </div>
               </div>
-            </Link>
+            </Link>})}
           </div>
         </div>
       </section>
