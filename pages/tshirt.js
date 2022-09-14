@@ -10,7 +10,7 @@ const tshirt = ({products}) => {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
           {products.map((item)=> {
-             return <Link key={item._id} href={"/product/[slug].js"}>
+             return <Link key={item._id} href={`/product/${item.slug}`}>
               <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl cursor-pointer border-black">
                 <a className="block rounded overflow-hidden">
                   <img
