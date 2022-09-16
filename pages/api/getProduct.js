@@ -8,4 +8,6 @@ const handler=async(req,res)=>{
     res.status(200).json({ products })
   }
   export default connectDB(handler);
+
+  //this is a comment
   
