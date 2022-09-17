@@ -15,7 +15,7 @@ const tshirt = ({products}) => {
                 <a className="block rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="object-cover object-center w-full  block"
+                    className="object-cover object-top w-full h-96  block"
                     src={item.img}
                   />
                 </a>
