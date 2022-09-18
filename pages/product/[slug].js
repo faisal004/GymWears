@@ -158,11 +158,11 @@ const Post = ({ addToCart, product, variants }) => {
                 <div className="flex ml-6 items-center">
                   <span className="mr-3">Size</span>
                   <div className="">
-                    <select value={size}
+                    <select
                       onChange={() => refreshVariant()}
                       className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-500 text-base pl-3 pr-10"
                     >
-                      {Object.keys(variants[color]).includes('S') && <option value={'S'}>S</option>}
+                      <option>S</option>
                       <option>M</option>
                       <option>L</option>
                       <option>XL</option>
