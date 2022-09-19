@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     try {
       if (window.localStorage.getItem("cart")) {
         setcart(JSON.parse(localStorage.getItem("cart")));
-        savecart(JSON.parse(localStorage.getItem("cart")))
+        savecart(JSON.parse(localStorage.getItem("cart")));
       }
     } catch (error) {
       console.error(error);
@@ -20,31 +20,29 @@ function MyApp({ Component, pageProps }) {
   }, [setcart]);
 
   const savecart = (mycart) => {
-    
     window.localStorage.setItem("cart", JSON.stringify(mycart));
-    
+
     let subt = 0;
     let keys = Object.keys(mycart);
     for (let i = 0; i < keys.length; i++) {
       subt += mycart[keys[i]]["price"] * mycart[keys[i]].qty;
     }
     setsubTotal(subt);
-    console.log(subTotal)
+    console.log(subTotal);
   };
 
   const addToCart = (itemcode, qty, price, name, size, varient) => {
-    let newCart = cart
-    
+    let newCart = cart;
+
     if (itemcode in cart) {
       newCart[itemcode].qty = cart[itemcode].qty + qty;
     } else {
       newCart[itemcode] = { qty: 1, price, name, size, varient };
     }
     setcart = newCart;
-    
+
     savecart = newCart;
     //issue is with save cart
-    
   };
 
   const removeFromCart = (itemcode, qty, price, name, size, varient) => {

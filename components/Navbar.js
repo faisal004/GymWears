@@ -81,9 +81,9 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
             return (
               <li key={k}>
                 <div className="flex my-3">
-                  <div className="w-2/3">{cart[k].name}</div>
+                  <div className="w-2/3">{cart[k].name}( {cart[k].size}/{cart[k].varient})</div>
                   <div className="flex items-center justify-center w-1/3">
-                    <AiOutlineMinusCircle
+                    <AiOutlineMinusCircle 
                       onClick={() => {
                         removeFromCart(
                           k,
