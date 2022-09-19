@@ -85,13 +85,16 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Navbar
         cart={cart}
+        clearcart={clearcart}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         subTotal={subTotal}
       />
       <Component
       buyNow={buyNow}
+      
         cart={cart}
+        clearcart={clearcart}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         subTotal={subTotal}

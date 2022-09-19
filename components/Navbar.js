@@ -12,7 +12,7 @@ import {
 
 import {MdAccountCircle} from "react-icons/Md";
 
-const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
+const Navbar = ({ cart,clearcart, addToCart, removeFromCart, subTotal }) => {
   
   const togglecart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
@@ -113,10 +113,14 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
             );
           })}
         </ol>
-        <Link href={'/checkout'}><button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+        <div className="flex my-2"><Link href={'/checkout'}><button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
           <AiFillShopping className=" m-1" />
           CheckOut
         </button></Link>
+        <button onClick={clearcart} className="mx-1 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+          
+          ClearCart
+        </button></div>
       </div>
     </div>
   );
