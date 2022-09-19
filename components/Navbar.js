@@ -10,10 +10,9 @@ import {
   AiFillShopping,
 } from "react-icons/Ai";
 
-import {MdAccountCircle} from "react-icons/Md";
+import { MdAccountCircle } from "react-icons/Md";
 
-const Navbar = ({ cart,clearcart, addToCart, removeFromCart, subTotal }) => {
-  
+const Navbar = ({ cart, clearcart, addToCart, removeFromCart, subTotal }) => {
   const togglecart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
       ref.current.classList.remove("translate-x-full");
@@ -53,11 +52,12 @@ const Navbar = ({ cart,clearcart, addToCart, removeFromCart, subTotal }) => {
           </Link>
         </ul>
       </div>
-      <div
-        
-        className="cart absolute right-0 mx-2 px-2 py-2 text-3xl  md:text-3xl cursor-pointer flex"
-      >
-      <Link href={'/login'}><a><MdAccountCircle className="mx-4 "/></a></Link>
+      <div className="cart absolute right-0 mx-2 px-2 py-2 text-3xl  md:text-3xl cursor-pointer flex">
+        <Link href={"/login"}>
+          <a>
+            <MdAccountCircle className="mx-4 " />
+          </a>
+        </Link>
         <AiOutlineShoppingCart onClick={togglecart} />
       </div>
       <div
@@ -74,16 +74,18 @@ const Navbar = ({ cart,clearcart, addToCart, removeFromCart, subTotal }) => {
           <AiFillCloseCircle className="cursor-pointer text-slate-700" />
         </span>
         <ol className="list-decimal">
-          {Object.keys(cart).length == 0 && (         
+          {Object.keys(cart).length == 0 && (
             <div className="mt-2">No Item to display</div>
           )}
           {Object.keys(cart).map((k) => {
             return (
               <li key={k}>
                 <div className="flex my-3">
-                  <div className="w-2/3">{cart[k].name}( {cart[k].size}/{cart[k].varient})</div>
+                  <div className="w-2/3">
+                    {cart[k].name}( {cart[k].size}/{cart[k].varient})
+                  </div>
                   <div className="flex items-center justify-center w-1/3">
-                    <AiOutlineMinusCircle 
+                    <AiOutlineMinusCircle
                       onClick={() => {
                         removeFromCart(
                           k,
@@ -97,7 +99,8 @@ const Navbar = ({ cart,clearcart, addToCart, removeFromCart, subTotal }) => {
                       className=" cursor-pointer mx-2"
                     />
                     {cart[k].qty}
-                    <AiOutlinePlusCircle  onClick={() => {
+                    <AiOutlinePlusCircle
+                      onClick={() => {
                         addToCart(
                           k,
                           1,
@@ -106,21 +109,30 @@ const Navbar = ({ cart,clearcart, addToCart, removeFromCart, subTotal }) => {
                           cart[k].size,
                           cart[k].varient
                         );
-                      }} className=" cursor-pointer mx-2" />
+                      }}
+                      className=" cursor-pointer mx-2"
+                    />
                   </div>
                 </div>
               </li>
             );
           })}
         </ol>
-        <div className="flex my-2"><Link href={'/checkout'}><button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
-          <AiFillShopping className=" m-1" />
-          CheckOut
-        </button></Link>
-        <button onClick={clearcart} className="mx-1 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
-          
-          ClearCart
-        </button></div>
+        <div className="flex my-2">
+          <Link href={"/checkout"}>
+            <button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+              <AiFillShopping className=" m-1" />
+              CheckOut
+            </button>
+          </Link>
+          <button
+            onClick={clearcart}
+            className="mx-1 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded"
+          >
+            ClearCart
+          </button>
+        </div>
+        <span className=" font-medium">Subtotal:{subTotal}</span>
       </div>
     </div>
   );
