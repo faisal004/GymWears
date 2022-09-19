@@ -254,14 +254,14 @@ const Post = ({ buyNow, addToCart, product, variants }) => {
               </div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  ₹499
+                  ₹{product.price}
                 </span>
                 <button
                   onClick={() => {
                     addToCart(
                       slug,
                       1,
-                      499,
+                      product.price,
                       product.title,
                       product.size,
                       product.color
@@ -277,7 +277,7 @@ const Post = ({ buyNow, addToCart, product, variants }) => {
                     buyNow(
                       slug,
                       1,
-                      499,
+                      product.price,
                       product.title,
                       product.size,
                       product.color
@@ -337,7 +337,7 @@ export async function getServerSideProps(_context) {
   }
 
   let product = await Product.findOne({ slug: _context.query.slug });
-  let variants = await Product.find({ title: product.title });
+  let variants = await Product.find({ title: product.title,catgory:product.catgory });
   let colorSizeSlug = {};
   for (let item of variants) {
     if (Object.keys(colorSizeSlug).includes(item.color)) {
