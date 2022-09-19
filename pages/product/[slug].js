@@ -2,19 +2,41 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import mongoose from "mongoose";
 import Product from "../../models/product";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Post = ({ buyNow,addToCart, product, variants }) => {
+const Post = ({ buyNow, addToCart, product, variants }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [pin, setpin] = useState();
   const [service, setservice] = useState();
+
   const checkService = async () => {
+    
     let pins = await fetch("http://localhost:3000/api/pincode");
     let pinJson = await pins.json();
     if (pinJson.includes(pin)) {
       setservice(true);
+      toast.success('Your Pincode is serviceable!', {
+        position: "bottom-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
     } else {
       setservice(false);
+      toast.error('Sorry, Your pincode is not Serviceable!', {
+        position: "bottom-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
     }
   };
   const onChangePin = (e) => {
@@ -24,15 +46,24 @@ const Post = ({ buyNow,addToCart, product, variants }) => {
   const [color, setcolor] = useState(product.color);
   const [size, setSize] = useState(product.size);
   const refreshVariant = (newsize, newcolor) => {
-    let url = `http://localhost:3000/product/${
-      variants[newcolor][newsize]["slug"]
-    }`;
+    let url = `http://localhost:3000/product/${variants[newcolor][newsize]["slug"]}`;
     window.location = url;
   };
 
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className="container px-5 py-16 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -145,15 +176,14 @@ const Post = ({ buyNow,addToCart, product, variants }) => {
                   </a>
                 </span> */}
               </div>
-              <p className="leading-relaxed">
-               {product.desc}
-              </p>
+              <p className="leading-relaxed">{product.desc}</p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex">
                   <span className="mr-3">Color</span>
                   {Object.keys(variants).includes("white") &&
                     Object.keys(variants["white"]).includes(size) && (
-                      <button  onClick={()=>(refreshVariant(size,'white'))}
+                      <button
+                        onClick={() => refreshVariant(size, "white")}
                         className={`border-2 rounded-full w-6 h-6 focus:outline-none ${
                           color === "white"
                             ? "border-black"
@@ -163,7 +193,8 @@ const Post = ({ buyNow,addToCart, product, variants }) => {
                     )}
                   {Object.keys(variants).includes("red") &&
                     Object.keys(variants["red"]).includes(size) && (
-                      <button onClick={()=>(refreshVariant(size,'red'))}
+                      <button
+                        onClick={() => refreshVariant(size, "red")}
                         className={`border-2 border-gray-300 ml-1 bg-red-700 rounded-full w-6 h-6 focus:outline-none ${
                           color === "red" ? "border-black" : "border-gray-300 "
                         }`}
@@ -171,7 +202,8 @@ const Post = ({ buyNow,addToCart, product, variants }) => {
                     )}
                   {Object.keys(variants).includes("green") &&
                     Object.keys(variants["green"]).includes(size) && (
-                      <button onClick={()=>(refreshVariant(size,'green'))}
+                      <button
+                        onClick={() => refreshVariant(size, "green")}
                         className={`border-2 border-gray-300 ml-1 bg-green-700 rounded-full w-6 h-6 focus:outline-none ${
                           color === "green"
                             ? "border-black"
@@ -183,7 +215,8 @@ const Post = ({ buyNow,addToCart, product, variants }) => {
                 <div className="flex ml-6 items-center">
                   <span className="mr-3">Size</span>
                   <div className="">
-                    <select value={size}
+                    <select
+                      value={size}
                       onChange={(e) => refreshVariant(e.target.value, color)}
                       className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-500 text-base pl-3 pr-10"
                     >
@@ -231,7 +264,7 @@ const Post = ({ buyNow,addToCart, product, variants }) => {
                       499,
                       product.title,
                       product.size,
-                     product.color
+                      product.color
                     );
                   }}
                   className="flex ml-8 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
@@ -239,16 +272,19 @@ const Post = ({ buyNow,addToCart, product, variants }) => {
                   Add to cart
                 </button>
 
-                <button onClick={() => {
+                <button
+                  onClick={() => {
                     buyNow(
                       slug,
                       1,
                       499,
                       product.title,
                       product.size,
-                     product.color
+                      product.color
                     );
-                  }} className="flex ml-10 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded">
+                  }}
+                  className="flex ml-10 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
+                >
                   Buy Now
                 </button>
                 {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
