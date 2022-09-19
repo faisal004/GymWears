@@ -3,7 +3,7 @@ import { useState } from "react";
 import mongoose from "mongoose";
 import Product from "../../models/product";
 
-const Post = ({ addToCart, product, variants }) => {
+const Post = ({ buyNow,addToCart, product, variants }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [pin, setpin] = useState();
@@ -239,7 +239,16 @@ const Post = ({ addToCart, product, variants }) => {
                   Add to cart
                 </button>
 
-                <button className="flex ml-10 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded">
+                <button onClick={() => {
+                    buyNow(
+                      slug,
+                      1,
+                      499,
+                      product.title,
+                      product.size,
+                     product.color
+                    );
+                  }} className="flex ml-10 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded">
                   Buy Now
                 </button>
                 {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">

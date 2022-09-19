@@ -2,11 +2,13 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import "../styles/globals.css";
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Router, useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const [cart, setcart] = useState({});
   const [subTotal, setsubTotal] = useState(0);
+  const router=useRouter();
   useEffect(() => {
     try {
       if (window.localStorage.getItem("cart")) {
@@ -17,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       console.error(error);
       localStorage.clear();
     }
-  }, [setcart]);
+  }, []);
 
   const savecart = (mycart) => {
     window.localStorage.setItem("cart", JSON.stringify(mycart));
@@ -39,12 +41,28 @@ function MyApp({ Component, pageProps }) {
     } else {
       newCart[itemcode] = { qty: 1, price, name, size, varient };
     }
-    setcart = newCart;
+    setcart (newCart);
 
-    savecart = newCart;
+    savecart(newCart) ;
     //issue is with save cart
   };
 
+  const buyNow =(itemcode, qty, price, name, size, varient)=>{
+    
+    let newCart ={itemcode:{ qty: 1, price, name, size, varient} };
+
+   
+    setcart (newCart);
+    savecart(newCart)
+    savecart(newCart) ;
+    router.push("/checkout")
+
+  }
+  
+  const clearcart=()=>{
+    setcart({})
+    savecart({})
+  }
   const removeFromCart = (itemcode, qty, price, name, size, varient) => {
     let newCart = cart;
     if (itemcode in cart) {
@@ -53,8 +71,8 @@ function MyApp({ Component, pageProps }) {
     if (newCart[itemcode].qty <= 0) {
       delete newCart[itemcode];
     }
-    setcart = newCart;
-    savecart = newCart;
+    setcart(newCart);
+    savecart(newCart);
   };
 
   return (
@@ -72,6 +90,7 @@ function MyApp({ Component, pageProps }) {
         subTotal={subTotal}
       />
       <Component
+      buyNow={buyNow}
         cart={cart}
         addToCart={addToCart}
         removeFromCart={removeFromCart}

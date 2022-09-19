@@ -62,7 +62,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal }) => {
       </div>
       <div
         ref={ref}
-        className="sidecart h-[100vh] absolute top-0 right-0 bg-slate-300 p-10 font-semibold transform transition-transform translate-x-full"
+        className="sidecart overflow-y-scroll h-[100vh] absolute top-0 right-0 bg-slate-300 p-10 font-semibold transform transition-transform translate-x-full"
       >
         <h2 className="flex flex-row text-center text-2xl">
           ShoppingCart
