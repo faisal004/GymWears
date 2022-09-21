@@ -80,7 +80,7 @@ const login = () => {
                 <input
                   type="text"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="name"
                   placeholder="Email address"
                 />
               </div>
@@ -89,7 +89,7 @@ const login = () => {
                 <input
                   type="password"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="password"
                   placeholder="Password"
                 />
               </div>
@@ -115,7 +115,7 @@ const login = () => {
 
               <div className="text-center lg:text-left">
                 <button
-                  type="button"
+                  type="Submit"
                   className="inline-block px-7 py-3 bg-slate-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Login

@@ -1,7 +1,41 @@
 import React from "react";
 import Link from "next/link";
+import { useState } from "react";
 
-const signup = () => {
+const Signup = () => {
+  const [name, setName] = useState();
+
+  const [email, setEmail] = useState();
+
+  const [password, setPassword] = useState();
+
+  const handleChange = (e) => {
+    if (e.target.name == 'name') {
+      setName(e.target.value);
+    } else if (e.target.name == 'email') {
+      setEmail(e.target.value);
+    } else if (e.target.name == 'password') {
+      setPassword(e.target.value);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = { name, email, password };
+    let res = await fetch('http://localhost:3000/api/signup', {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    let response = await res.json();
+    console.log(response);
+    setEmail('');
+    setName('');
+    setPassword('');
+  };
+
   return (
     <section className="h-screen">
       <div className="px-6 h-full text-gray-800">
@@ -14,37 +48,50 @@ const signup = () => {
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form>
+            <form onSubmit={handleSubmit} method="POST">
               <div className="mb-6">
                 <input
+                  value={name}
+                  name="name"
+                  onChange={handleChange}
                   type="text"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="name"
                   placeholder="Your name"
+                  autoComplete="name"
+                  
                 />
               </div>
 
               <div className="mb-6">
                 <input
+                  value={email}
+                  onChange={handleChange}
                   type="text"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="email"
                   placeholder="Email address"
+                  autoComplete="email"
+                 
                 />
               </div>
 
               <div className="mb-6">
                 <input
+                  value={password}
+                  onChange={handleChange}
                   type="password"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="password"
                   placeholder="Password"
+                  autoComplete="password"
+                  
                 />
               </div>
 
               <div className="text-center lg:text-left">
                 <button
-                  type="button"
+                  type="sumbit"
                   className="inline-block px-7 py-3 bg-slate-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Sign Up
@@ -68,4 +115,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;
