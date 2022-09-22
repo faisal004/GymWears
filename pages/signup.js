@@ -10,19 +10,19 @@ const Signup = () => {
   const [password, setPassword] = useState();
 
   const handleChange = (e) => {
-    if (e.target.name == 'name') {
+    if (e.target.name == "name") {
       setName(e.target.value);
-    } else if (e.target.name == 'email') {
+    } else if (e.target.name == "email") {
       setEmail(e.target.value);
-    } else if (e.target.name == 'password') {
+    } else if (e.target.name == "password") {
       setPassword(e.target.value);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { name, email, password };
-    let res = await fetch('http://localhost:3000/api/signup', {
+    const data = {  name,email, password };
+    let res = await fetch("http://localhost:3000/api/signup", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -31,9 +31,10 @@ const Signup = () => {
     });
     let response = await res.json();
     console.log(response);
-    setEmail('');
-    setName('');
-    setPassword('');
+    setName("");
+    setEmail("");
+
+    setPassword("");
   };
 
   return (
@@ -59,7 +60,7 @@ const Signup = () => {
                   id="name"
                   placeholder="Your name"
                   autoComplete="name"
-                  
+                  required
                 />
               </div>
 
@@ -67,12 +68,12 @@ const Signup = () => {
                 <input
                   value={email}
                   onChange={handleChange}
-                  type="text"
+                  type="email"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
                   id="email"
                   placeholder="Email address"
                   autoComplete="email"
-                 
+                  required
                 />
               </div>
 
@@ -85,7 +86,7 @@ const Signup = () => {
                   id="password"
                   placeholder="Password"
                   autoComplete="password"
-                  
+                  required
                 />
               </div>
 
