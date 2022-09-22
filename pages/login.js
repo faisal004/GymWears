@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const login = () => {
+const Login = () => {
   return (
     <section className="h-screen">
       <div className="px-6 h-full text-gray-800">
@@ -115,7 +115,7 @@ const login = () => {
 
               <div className="text-center lg:text-left">
                 <button
-                  type="Submit"
+                  type="submit"
                   className="inline-block px-7 py-3 bg-slate-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Login
@@ -139,4 +139,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
