@@ -3,16 +3,16 @@ import Link from "next/link";
 import { useState } from "react";
 
 const Signup = () => {
-  const [name, setName] = useState();
+  const [name, setName] = useState("");
 
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
 
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name == "name") {
       setName(e.target.value);
-    } else if (e.target.name == "email") {
+    }else if (e.target.name == "email") {
       setEmail(e.target.value);
     } else if (e.target.name == "password") {
       setPassword(e.target.value);
@@ -73,6 +73,7 @@ const Signup = () => {
                   <input
                       value={email}
                       onChange={handleChange}
+                      name="email"
                       type="email"
                       className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
                       id="email"
@@ -84,6 +85,7 @@ const Signup = () => {
                 <div className="mb-6">
                   <input
                     value={password}
+                    name="password"
                     onChange={handleChange}
                     type="password"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
