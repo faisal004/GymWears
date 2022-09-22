@@ -1,9 +1,79 @@
 import React from "react";
 import Link from "next/link";
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState();
+
+  const [password, setPassword] = useState();
+
+  const handleChange = (e) => {
+    if (e.target.name == "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name == "password") {
+      setPassword(e.target.value);
+    }
+  };
+
+  let handleSubmit;
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = { email: email, password: password };
+    let res = await fetch("http://localhost:3000/api/login", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    let response = await res.json();
+    console.log(response);
+
+    setEmail("");
+
+    setPassword("");
+    if (response.success) {
+      toast.success("You are successfully logged inn", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      router.push("http://localhost:3000");
+    } else {
+      toast.error(response.error, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <section className="h-screen">
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="px-6 h-full text-gray-800">
         <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
           <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
@@ -14,8 +84,8 @@ const Login = () => {
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form>
-              <div className="flex flex-row items-center justify-center lg:justify-start">
+            <form onSubmit={handleSubmit} method="POST">
+              {/* <div className="flex flex-row items-center justify-center lg:justify-start">
                 <p className="text-lg mb-0 mr-4">Sign in with</p>
                 <button
                   type="button"
@@ -74,20 +144,26 @@ const Login = () => {
 
               <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                 <p className="text-center font-semibold mx-4 mb-0">Or</p>
-              </div>
+              </div> */}
 
               <div className="mb-6">
                 <input
-                  type="text"
+                  onChange={handleChange}
+                  value={email}
+                  type="email"
+                  name="email"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
-                  id="name"
+                  id="email"
                   placeholder="Email address"
                 />
               </div>
 
               <div className="mb-6">
                 <input
+                  onChange={handleChange}
+                  value={password}
                   type="password"
+                  name="password"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-slate-600 focus:outline-none"
                   id="password"
                   placeholder="Password"
@@ -108,9 +184,9 @@ const Login = () => {
                     Remember me
                   </label>
                 </div>
-                <Link href={'/forgotpass'}><a className="text-red-600">
-                  Forgot password?
-                </a></Link>
+                <Link href={"/forgotpass"}>
+                  <a className="text-red-600">Forgot password?</a>
+                </Link>
               </div>
 
               <div className="text-center lg:text-left">

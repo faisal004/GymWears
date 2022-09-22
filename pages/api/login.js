@@ -2,10 +2,19 @@ import connectDB from "../../middleware/mongoose";
 import User from "../../models/User";
 const handler = async (req, res) => {
   if (req.method == "POST") {
-    let u = new User(req.body);
-    await u.save();
+    let user = await User.findOne({ "email": req.body.email });
+    if (user) {
+      if (req.body.email == user.email && req.body.password == user.password) {
+        res.status(200).json({ succes: true, email:user.email, name:user.name });
+      }
+      else{
+        res.status(200).json({ succes: false, error:"Invalid Credential" });
 
-    res.status(200).json({ succes: "succes" });
+      }
+    }
+    else{
+      res.status(200).json({ succes: false, error:"No user found"});
+    }
   } else {
     res.status(400).json({ error: "This method is not allowed" });
   }
