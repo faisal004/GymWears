@@ -37,7 +37,7 @@ const Login = () => {
     setEmail("");
 
     setPassword("");
-    if (response.success) {
+    //if (response.success) 
       toast.success("You are successfully logged inn", {
         position: "top-left",
         autoClose: 5000,
@@ -47,18 +47,11 @@ const Login = () => {
         draggable: true,
         progress: undefined,
       });
-      router.push("http://localhost:3000");
-    } else {
-      toast.error(response.error, {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
+      setTimeout(() => {
+        router.push("http://localhost:3000");
+      }, 1000);
+     
+    
   };
 
   return (
