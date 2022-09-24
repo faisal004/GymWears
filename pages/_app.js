@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
     setcart (newCart);
 
     savecart(newCart) ;
-    //issue is with save cart
+    
   };
 
   const buyNow =(itemcode, qty, price, name, size, varient)=>{
