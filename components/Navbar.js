@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import {
   AiOutlineShoppingCart,
   AiFillCloseCircle,
@@ -12,7 +12,17 @@ import {
 
 import { MdAccountCircle } from "react-icons/Md";
 
-const Navbar = ({ cart, clearcart, addToCart, removeFromCart, subTotal }) => {
+const Navbar = ({
+  logout,
+  user,
+  cart,
+  clearcart,
+  addToCart,
+  removeFromCart,
+  subTotal,
+}) => {
+  const [dropdown, setDropdown] = useState(false);
+  
   const togglecart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
       ref.current.classList.remove("translate-x-full");
@@ -25,7 +35,7 @@ const Navbar = ({ cart, clearcart, addToCart, removeFromCart, subTotal }) => {
   const ref = useRef();
   return (
     <div className="flex flex-col md:flex-row md:justify-start justify-center items-center shadow-xl sticky top-0 bg-white z-10">
-      <div className="logo">
+      <div className="logo mr-auto md:mx-5">
         <Link href={"/"}>
           <a>
             <Image src="/logo-modified.png" alt="" height={70} width={100} />
@@ -52,12 +62,80 @@ const Navbar = ({ cart, clearcart, addToCart, removeFromCart, subTotal }) => {
           </Link>
         </ul>
       </div>
-      <div className="cart absolute right-0 mx-2 px-2 py-2 text-3xl  md:text-3xl cursor-pointer flex">
-        <Link href={"/login"}>
-          <a>
-            <MdAccountCircle className="mx-4 " />
-          </a>
-        </Link>
+      <div className="cart absolute items-center right-0 mx-2 px-2 py-2 text-3xl  md:text-3xl cursor-pointer flex">
+        <a onClick={()=>{setDropdown(true)}}
+              onMouseLeave={()=>{setDropdown(false)}}>
+          {dropdown && (
+            <div className="relative  text-left">
+              <div
+                className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="menu-button"
+                tabIndex="-1"
+              >
+                <div className="py-1" role="none">
+                  <a
+                    href="#"
+                    className="text-gray-700 block px-4 py-2 text-sm "
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="menu-item-0"
+                  >
+                    Account settings
+                  </a>
+                  <a
+                    href="#"
+                    className="text-gray-700 block px-4 py-2 text-sm"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="menu-item-1"
+                  >
+                    Support
+                  </a>
+                  <a
+                    href="#"
+                    className="text-gray-700 block px-4 py-2 text-sm"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="menu-item-2"
+                  >
+                    My Orders
+                  </a>
+                  <form method="POST"  role="none">
+                    <button
+                    onClick={logout}
+                      type="submit"
+                      className="text-gray-700 block w-full px-4 py-2 text-left text-sm"
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="menu-item-3"
+                    >
+                      Sign out
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {user.value && (
+            <MdAccountCircle
+              
+              className="mx-4 "
+            />
+          )}
+        </a>
+
+        {!user.value && (
+          <Link href={"/login"}>
+            <a>
+              <button className="bg-slate-600 text-white py-2 px-4 rounded-xl text-sm">
+                Log In
+              </button>
+            </a>
+          </Link>
+        )}
         <AiOutlineShoppingCart onClick={togglecart} />
       </div>
       <div

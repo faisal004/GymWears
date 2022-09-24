@@ -3,12 +3,14 @@ import Navbar from "../components/Navbar";
 import "../styles/globals.css";
 import Head from "next/head";
 import { useState, useEffect, useRef } from "react";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const [cart, setcart] = useState({});
   const [subTotal, setsubTotal] = useState(0);
-  const router=useRouter();
+  const [user, setUser] = useState({ value: null });
+  const [key, setKey] = useState(0);
+  const router = useRouter();
   useEffect(() => {
     try {
       if (window.localStorage.getItem("cart")) {
@@ -19,7 +21,19 @@ function MyApp({ Component, pageProps }) {
       console.error(error);
       localStorage.clear();
     }
-  }, []);
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUser({ value: token });
+      setKey(Math.random());
+    }
+  }, [router.query]);
+
+  const logout=()=>{
+    localStorage.removeItem('token')
+    setUser({value:null})
+    setKey(Math.random())
+
+  }
 
   const savecart = (mycart) => {
     window.localStorage.setItem("cart", JSON.stringify(mycart));
@@ -30,7 +44,6 @@ function MyApp({ Component, pageProps }) {
       subt += mycart[keys[i]]["price"] * mycart[keys[i]].qty;
     }
     setsubTotal(subt);
-    
   };
 
   const addToCart = (itemcode, qty, price, name, size, varient) => {
@@ -41,28 +54,24 @@ function MyApp({ Component, pageProps }) {
     } else {
       newCart[itemcode] = { qty: 1, price, name, size, varient };
     }
-    setcart (newCart);
+    setcart(newCart);
 
-    savecart(newCart) ;
-    
+    savecart(newCart);
   };
 
-  const buyNow =(itemcode, qty, price, name, size, varient)=>{
-    
-    let newCart ={itemcode:{ qty: 1, price, name, size, varient} };
+  const buyNow = (itemcode, qty, price, name, size, varient) => {
+    let newCart = { itemcode: { qty: 1, price, name, size, varient } };
 
-   
-    setcart (newCart);
-    savecart(newCart)
-    savecart(newCart) ;
-    router.push("/checkout")
+    setcart(newCart);
+    savecart(newCart);
+    savecart(newCart);
+    router.push("/checkout");
+  };
 
-  }
-  
-  const clearcart=()=>{
-    setcart({})
-    savecart({})
-  }
+  const clearcart = () => {
+    setcart({});
+    savecart({});
+  };
   const removeFromCart = (itemcode, qty, price, name, size, varient) => {
     let newCart = cart;
     if (itemcode in cart) {
@@ -84,6 +93,9 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/logo-modified.png" />
       </Head>
       <Navbar
+        logout={logout}
+        user={user}
+        key={key}
         cart={cart}
         clearcart={clearcart}
         addToCart={addToCart}
@@ -91,8 +103,7 @@ function MyApp({ Component, pageProps }) {
         subTotal={subTotal}
       />
       <Component
-      buyNow={buyNow}
-      
+        buyNow={buyNow}
         cart={cart}
         clearcart={clearcart}
         addToCart={addToCart}
