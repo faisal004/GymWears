@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 
 const Login = () => {
   const router = useRouter();
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
 
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name == "email") {
@@ -23,7 +23,7 @@ const Login = () => {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { email: email, password: password };
+    const data = { email, password };
     let res = await fetch("http://localhost:3000/api/login", {
       method: "POST", // or 'PUT'
       headers: {
@@ -37,7 +37,8 @@ const Login = () => {
     setEmail("");
 
     setPassword("");
-    //if (response.success) 
+    if (response.success = true) {
+      localStorage.setItem('token',response.token)
       toast.success("You are successfully logged inn", {
         position: "top-left",
         autoClose: 5000,
@@ -50,24 +51,33 @@ const Login = () => {
       setTimeout(() => {
         router.push("http://localhost:3000");
       }, 1000);
-     
-    
+    } else {
+      toast.error(response.error, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
     <section className="h-screen">
-      <ToastContainer
-        position="top-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="px-6 h-full text-gray-800">
+        <ToastContainer
+          position="top-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
           <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
             <img
