@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Head from "next/head";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import LoadingBar from 'react-top-loading-bar'
 
 function MyApp({ Component, pageProps }) {
   const [cart, setcart] = useState({});
@@ -11,7 +12,15 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState({ value: null });
   const [key, setKey] = useState(0);
   const router = useRouter();
+  const [progress, setProgress] = useState(0)
   useEffect(() => {
+    router.events.on('routeChangeStart', ()=>{
+      setProgress(40)
+    })
+    router.events.on('routeChangeComplete', ()=>{
+      setProgress(100)
+    })
+
     try {
       if (window.localStorage.getItem("cart")) {
         setcart(JSON.parse(localStorage.getItem("cart")));
@@ -92,6 +101,11 @@ function MyApp({ Component, pageProps }) {
         <meta name="description" content="Nothing Much To Know" />
         <link rel="icon" href="/logo-modified.png" />
       </Head>
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <Navbar
         logout={logout}
         user={user}
