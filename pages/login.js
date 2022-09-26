@@ -39,13 +39,14 @@ const Login = () => {
       },
       body: JSON.stringify(data),
     });
+   
     let response = await res.json();
     console.log(response);
 
     setEmail("");
 
     setPassword("");
-    if (response.success = true) {
+    if (response.succes ) {
       localStorage.setItem('token',response.token)
       toast.success("You are successfully logged inn", {
         position: "top-left",
@@ -59,7 +60,9 @@ const Login = () => {
       setTimeout(() => {
         router.push("http://localhost:3000");
       }, 1000);
+      
     } else {
+     
       toast.error(response.error, {
         position: "top-left",
         autoClose: 5000,
