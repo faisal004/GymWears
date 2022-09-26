@@ -1,17 +1,60 @@
 import React from "react";
 import {
   AiFillShopping,
-  
   AiOutlinePlusCircle,
   AiOutlineMinusCircle,
-  
 } from "react-icons/Ai";
 import Link from "next/link";
+import Head from "next/head";
+import Script from "next/script";
 
-
-const checkout = ({ cart ,addToCart,removeFromCart,subTotal}) => {
+const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
+  const intiatepayment = () => {
+    let txnToken;
+    var config = {
+      "root": "",
+      "flow": "DEFAULT",
+      "data": {
+      "orderId": Math.random(), /* update order id */
+      "token": txnToken, /* update token value */
+      "tokenType": "TXN_TOKEN",
+      "amount": amount /* update amount */
+      },
+      "handler": {
+      "notifyMerchant": function(eventName,data){
+      console.log("notifyMerchant handler function called");
+      console.log("eventName => ",eventName);
+      console.log("data => ",data);
+      }
+      }
+      };
+      
+      
+      
+      window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+      // after successfully updating configuration, invoke JS Checkout
+      window.Paytm.CheckoutJS.invoke();
+      }).catch(function onError(error){
+      console.log("error => ",error);
+      });
+      
+      
+  };
   return (
     <div className="container px-5 py-10 mx-auto">
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"
+        />
+      </Head>
+      <Script
+        type="application/javascript"
+        src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.PAYTM_MID}.js`}
+        onload="onScriptLoad();"
+        crossorigin="anonymous"
+      ></Script>
+
       <div className="flex flex-col text-center w-full mb-12">
         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
           Checkout
@@ -148,7 +191,9 @@ const checkout = ({ cart ,addToCart,removeFromCart,subTotal}) => {
             return (
               <li key={k}>
                 <div className="flex my-3">
-                  <div className="">{cart[k].name}({cart[k].size}/{cart[k].varient})</div>
+                  <div className="">
+                    {cart[k].name}({cart[k].size}/{cart[k].varient})
+                  </div>
                   <div className="flex items-center justify-center w-1/3">
                     <AiOutlineMinusCircle
                       onClick={() => {
@@ -182,17 +227,18 @@ const checkout = ({ cart ,addToCart,removeFromCart,subTotal}) => {
               </li>
             );
           })}
-          
         </ol>
         <span className=" font-medium">Subtotal:{subTotal}</span>
-        
       </div>
-      <Link href={'/orders'}><button className=" m-2 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+      <Link href={"/orders"}>
+        <button
+          onClick={intiatepayment}
+          className=" m-2 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded"
+        >
           <AiFillShopping className=" m-1" />
           PAY
-        </button></Link>
-      
-      
+        </button>
+      </Link>
     </div>
   );
 };
