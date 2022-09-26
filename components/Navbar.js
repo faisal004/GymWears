@@ -63,7 +63,7 @@ const Navbar = ({
         </ul>
       </div>
       <div className="cart absolute items-center right-0 mx-2 px-2 py-2 text-3xl  md:text-3xl cursor-pointer flex">
-        <a onClick={()=>{setDropdown(true)}}
+        <span onClick={()=>{setDropdown(true)}}
               onMouseLeave={()=>{setDropdown(false)}}>
           {dropdown && (
             <div className="relative  text-left">
@@ -76,7 +76,7 @@ const Navbar = ({
               >
                 <div className="py-1" role="none">
                   <a
-                    href="#"
+                    href={"/myaccount"}
                     className="text-gray-700 block px-4 py-2 text-sm "
                     role="menuitem"
                     tabIndex="-1"
@@ -125,7 +125,7 @@ const Navbar = ({
               className="mx-4 "
             />
           )}
-        </a>
+        </span>
 
         {!user.value && (
           <Link href={"/login"}>

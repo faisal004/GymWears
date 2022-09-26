@@ -1,8 +1,18 @@
 import React from "react";
 import mongoose from "mongoose";
 import Order from "../models/orders";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Myorders = () => {
+    const router = useRouter();
+    useEffect(() => {
+		if (!localStorage.getItem('token')){
+		  router.push('/')
+		}
+	  
+		
+	  }, [])
   return (
     <div>
     <div className="text-2xl m-2 ">My Orders</div>
