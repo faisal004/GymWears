@@ -3,7 +3,7 @@ import React from "react";
 import mongoose from "mongoose";
 import Product from "../models/product";
 
-const mugs = ({ products }) => {
+const Mugs = ({ products }) => {
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -115,4 +115,4 @@ export async function getServerSideProps(_context) {
   };
 }
 
-export default mugs;
+export default Mugs;

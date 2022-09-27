@@ -9,56 +9,56 @@ import Head from "next/head";
 import Script from "next/script";
 
 const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
-  const intiatepayment = async () => {
+//   const intiatepayment = async () => {
     
    
-    let oid=Math.floor(Math.random() * Date.now())
+//     let oid=Math.floor(Math.random() * Date.now())
      
-    const data = { cart,subTotal,oid ,email:'email'};
+//     const data = { cart,subTotal,oid ,email:'email'};
 
-    let a= await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-  let txnRes = await a.json()
-  console.log(txnRes)
-  let txnToken=txnRes.txnToken
+//     let a= await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
+//   method: 'POST', // or 'PUT'
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify(data),
+// })
+//   let txnRes = await a.json()
+//   console.log(txnRes)
+//   let txnToken=txnRes.txnToken
 
-    var config = {
-      "root": "",
-      "flow": "DEFAULT",
-      "data": {
-      "orderId": oid, /* update order id */
-      "token": txnToken, /* update token value */
-      "tokenType": "TXN_TOKEN",
-      "amount": subTotal /* update amount */
-      },
-      "handler": {
-      "notifyMerchant": function(eventName,data){
-      console.log("notifyMerchant handler function called");
-      console.log("eventName => ",eventName);
-      console.log("data => ",data);
-      }
-      }
-      };
+//     var config = {
+//       "root": "",
+//       "flow": "DEFAULT",
+//       "data": {
+//       "orderId": oid, /* update order id */
+//       "token": txnToken, /* update token value */
+//       "tokenType": "TXN_TOKEN",
+//       "amount": subTotal /* update amount */
+//       },
+//       "handler": {
+//       "notifyMerchant": function(eventName,data){
+//       console.log("notifyMerchant handler function called");
+//       console.log("eventName => ",eventName);
+//       console.log("data => ",data);
+//       }
+//       }
+//       };
       
       
       
-      window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
-      // after successfully updating configuration, invoke JS Checkout
-      window.Paytm.CheckoutJS.invoke();
-      }).catch(function onError(error){
-      console.log("error => ",error);
-      });
+//       window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+//       // after successfully updating configuration, invoke JS Checkout
+//       window.Paytm.CheckoutJS.invoke();
+//       }).catch(function onError(error){
+//       console.log("error => ",error);
+//       });
       
       
-  };
+//   };
   return (
     <div className="container px-5 py-10 mx-auto">
-      <Head>
+      {/* <Head>
         <meta
           name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"
@@ -69,7 +69,7 @@ const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
         src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}
         
         crossorigin="anonymous"
-      ></Script>
+      ></Script> */}
 
       <div className="flex flex-col text-center w-full mb-12">
         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
@@ -248,7 +248,7 @@ const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
       </div>
       <Link href={"/orders"}>
         <button
-          onClick={intiatepayment}
+          //onClick={intiatepayment}
           className=" m-2 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded"
         >
           <AiFillShopping className=" m-1" />
