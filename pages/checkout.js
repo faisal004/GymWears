@@ -9,16 +9,32 @@ import Head from "next/head";
 import Script from "next/script";
 
 const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
-  const intiatepayment = () => {
-    let txnToken;
+  const intiatepayment = async () => {
+    
+   
+    let oid=Math.floor(Math.random() * Date.now())
+     
+    const data = { cart,subTotal,oid ,email:'email'};
+
+    let a= await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+  let txnRes = await a.json()
+  console.log(txnRes)
+  let txnToken=txnRes.txnToken
+
     var config = {
       "root": "",
       "flow": "DEFAULT",
       "data": {
-      "orderId": Math.random(), /* update order id */
+      "orderId": oid, /* update order id */
       "token": txnToken, /* update token value */
       "tokenType": "TXN_TOKEN",
-      "amount": amount /* update amount */
+      "amount": subTotal /* update amount */
       },
       "handler": {
       "notifyMerchant": function(eventName,data){
@@ -50,8 +66,8 @@ const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
       </Head>
       <Script
         type="application/javascript"
-        src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.PAYTM_MID}.js`}
-        onload="onScriptLoad();"
+        src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}
+        
         crossorigin="anonymous"
       ></Script>
 
