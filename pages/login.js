@@ -41,7 +41,7 @@ const Login = () => {
     });
    
     let response = await res.json();
-    console.log(response);
+    
 
     setEmail("");
 

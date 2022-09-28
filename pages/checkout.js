@@ -1,14 +1,19 @@
-import React from "react";
+import {React,useState} from "react";
 import {
   AiFillShopping,
   AiOutlinePlusCircle,
   AiOutlineMinusCircle,
 } from "react-icons/Ai";
 import Link from "next/link";
-import Head from "next/head";
-import Script from "next/script";
+//import Head from "next/head";
+//import Script from "next/script";
 
-const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
+const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [pincode, setPincode] = useState('')
+
 //   const intiatepayment = async () => {
     
    
@@ -244,19 +249,20 @@ const checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
             );
           })}
         </ol>
-        <span className=" font-medium">Subtotal:{subTotal}</span>
+        <span className=" font-medium">Subtotal:₹{subTotal}</span>
       </div>
       <Link href={"/orders"}>
         <button
           //onClick={intiatepayment}
-          className=" m-2 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded"
+          disabled={true}
+          className="disabled:bg-slate-200 m-2 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded"
         >
           <AiFillShopping className=" m-1" />
-          PAY
+          PAY ₹{subTotal}
         </button>
       </Link>
     </div>
   );
 };
 
-export default checkout;
+export default Checkout;

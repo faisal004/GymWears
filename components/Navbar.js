@@ -210,7 +210,7 @@ const Navbar = ({
             ClearCart
           </button>
         </div>
-        <span className=" font-medium">Subtotal:{subTotal}</span>
+        <span className=" font-medium">Subtotal:₹{subTotal}</span>
       </div>
     </div>
   );
