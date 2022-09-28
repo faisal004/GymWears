@@ -1,6 +1,7 @@
 import React from "react";
 
 const orders = () => {
+  //const oid=Math.floor(Math.random()*100000)
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
@@ -55,7 +56,7 @@ const orders = () => {
           <img
             alt="ecommerce"
             className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-            src="https://dummyimage.com/400x400"
+            src="https://e7.pngegg.com/pngimages/341/867/png-clipart-white-check-with-green-background-illustration-fingerprint-comcast-circle-symbol-technology-tick-miscellaneous-angle.png"
           />
         </div>
       </div>
