@@ -33,8 +33,10 @@ function MyApp({ Component, pageProps }) {
     const token = localStorage.getItem("token");
     if (token) {
       setUser({ value: token });
-      setKey(Math.random());
+      
+
     }
+    setKey(Math.random());
   }, [router.query]);
 
   const logout=()=>{
@@ -107,7 +109,7 @@ function MyApp({ Component, pageProps }) {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-      <Navbar
+      {key &&<Navbar
         logout={logout}
         user={user}
         key={key}
@@ -116,7 +118,7 @@ function MyApp({ Component, pageProps }) {
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         subTotal={subTotal}
-      />
+      />}
       <Component
         buyNow={buyNow}
         cart={cart}
