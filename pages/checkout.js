@@ -18,7 +18,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
   const [city, setCity] = useState("");
   const [disabled, setDisabled] = useState(true);
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
+    
     if (e.target.name == "name") {
       setName(e.target.value);
     } else if (e.target.name == "email") {
@@ -27,6 +28,21 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
       setPhone(e.target.value);
     } else if (e.target.name == "pincode") {
       setPincode(e.target.value);
+      if (e.target.value.length == 6) {
+        let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+        let pinJson = await pins.json();
+        if (Object.keys(pinJson).includes(e.target.value)) {
+          setState(pinJson[e.target.value][1]);
+          setCity(pinJson[e.target.value][0]);
+        }else{
+          setState('')
+          setCity('')
+        }
+      }
+      else{
+        setState('')
+        setCity('')
+      }
     } else if (e.target.name == "address") {
       setAddress(e.target.value);
     }
@@ -211,12 +227,12 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
                 State
               </label>
               <input
+                onChange={handleChange}
                 value={state}
                 type="text"
                 id="State"
                 name="State"
                 className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                readOnly={true}
               />
             </div>
           </div>
@@ -226,12 +242,12 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
                 City
               </label>
               <input
+                onChange={handleChange}
                 value={city}
                 type="text"
                 id="City"
                 name="City"
                 className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                readOnly={true}
               />
             </div>
           </div>
