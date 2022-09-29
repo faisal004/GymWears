@@ -51,7 +51,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
       email.length > 3 &&
       phone.length > 3 &&
       address.length > 3 &&
-      pincode.length > 3
+      pincode.length > 3 
+      
     ) {
       setDisabled(false);
     } else {
@@ -188,9 +189,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
                 htmlFor="phone"
                 className="leading-7 text-sm text-gray-600"
               >
-                Phone
+                Phone Number
               </label>
               <input
+              placeholder="10 Digit Phone.No"
                 onChange={handleChange}
                 value={phone}
                 type="number"
@@ -209,6 +211,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
                 Pincode
               </label>
               <input
+              placeholder="6 Digit Pincode"
                 onChange={handleChange}
                 value={pincode}
                 type="number"
@@ -239,7 +242,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, subTotal }) => {
           <div className="p-2 w-1/2">
             <div className="">
               <label htmlFor="city" className="leading-7 text-sm text-gray-600">
-                City
+                District
               </label>
               <input
                 onChange={handleChange}

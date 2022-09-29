@@ -198,14 +198,15 @@ const Navbar = ({
         </ol>
         <div className="flex my-2">
           <Link href={"/checkout"}>
-            <button className="inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
+            <button disabled={Object.keys(cart).length===0} className="disabled:bg-gray-400 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded">
               <AiFillShopping className=" m-1" />
               CheckOut
             </button>
           </Link>
           <button
+          disabled={Object.keys(cart).length===0}
             onClick={clearcart}
-            className="mx-1 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded"
+            className="disabled:bg-gray-400  mx-1 inline-flex text-white bg-slate-500 border-0 py-1 px-4 focus:outline-none hover:bg-slate-600 rounded"
           >
             ClearCart
           </button>
