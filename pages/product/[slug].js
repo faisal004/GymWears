@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import mongoose from "mongoose";
 import Product from "../../models/product";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,6 +10,15 @@ const Post = ({ buyNow, addToCart, product, variants }) => {
   const { slug } = router.query;
   const [pin, setpin] = useState();
   const [service, setservice] = useState();
+  const [color, setcolor] = useState(product.color);
+  const [size, setSize] = useState(product.size);
+
+  useEffect(() => {
+    console.log(product.availableQty)
+    setcolor(product.color)
+    setSize(product.size)
+  }, [router.query])
+  
 
   const checkService = async () => {
     
@@ -43,11 +52,11 @@ const Post = ({ buyNow, addToCart, product, variants }) => {
     setpin(e.target.value);
   };
 
-  const [color, setcolor] = useState(product.color);
-  const [size, setSize] = useState(product.size);
+  
   const refreshVariant = (newsize, newcolor) => {
     let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newcolor][newsize]["slug"]}`;
-    window.location = url;
+    //window.location = url;
+    router.push(url)
   };
 
   return (
@@ -253,10 +262,13 @@ const Post = ({ buyNow, addToCart, product, variants }) => {
                 </div>
               </div>
               <div className="flex">
-                <span className="title-font font-medium text-2xl text-gray-900">
+                {product.availableQty>0 &&<span className="title-font font-medium text-2xl text-gray-900">
                   ₹{product.price}
-                </span>
-                <button
+                </span>}
+                {product.availableQty<=0 &&<span className="title-font font-medium text-xl text-gray-900">
+                  Out of Stock!!
+                </span>}
+                <button disabled={product.availableQty<=0?true:false}
                   onClick={() => {
                     addToCart(
                       slug,
@@ -267,12 +279,12 @@ const Post = ({ buyNow, addToCart, product, variants }) => {
                       product.color
                     );
                   }}
-                  className="flex ml-8 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
+                  className="disabled:bg-gray-400 flex ml-8 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
                 >
                   Add to cart
                 </button>
 
-                <button
+                <button  disabled={product.availableQty<=0?true:false}
                   onClick={() => {
                     buyNow(
                       slug,
@@ -283,7 +295,7 @@ const Post = ({ buyNow, addToCart, product, variants }) => {
                       product.color
                     );
                   }}
-                  className="flex ml-10 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
+                  className="disabled:bg-gray-400 flex ml-10 text-white bg-slate-500 border-0 py-2 px-1 md:px-6 focus:outline-none hover:bg-slate-600 rounded"
                 >
                   Buy Now
                 </button>
