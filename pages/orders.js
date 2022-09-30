@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const orders = () => {
   //const oid=Math.floor(Math.random()*100000)
@@ -47,9 +48,9 @@ const orders = () => {
               <span className="title-font font-medium text-2xl text-gray-900">
                 Subtotal: ₹1188
               </span>
-              <button className="flex ml-auto text-white bg-slate-500 border-0 py-2 px-6 focus:outline-none hover:bg-slate-600 rounded">
+              <Link href={'./track'}><button  className="flex ml-auto text-white bg-slate-500 border-0 py-2 px-6 focus:outline-none hover:bg-slate-600 rounded">
                 Track Order
-              </button>
+              </button></Link>
               
             </div>
           </div>
