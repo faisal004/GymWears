@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import connectDB from "../../middleware/mongoose";
-import User from "../../models/User";
+import User from "../../models/user";
 var CryptoJS = require("crypto-js");
 
 const handler = async (req, res) => {
