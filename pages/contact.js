@@ -2,7 +2,8 @@ import React from 'react'
 
 const contact = () => {
   return (
-    <div>contact</div>
+    <div>contact
+    //Have to complete</div>
   )
 }
 
