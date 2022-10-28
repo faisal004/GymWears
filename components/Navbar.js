@@ -22,7 +22,7 @@ const Navbar = ({
   subTotal,
 }) => {
   const [dropdown, setDropdown] = useState(false);
-  
+  //comments
   const togglecart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
       ref.current.classList.remove("translate-x-full");
